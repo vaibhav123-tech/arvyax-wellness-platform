@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from './Navbar.module.css'; // Import the CSS module
+import styles from './Navbar.module.css';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -13,19 +13,21 @@ const Navbar = () => {
 
     return (
         <header className={styles.navbar}>
-            <Link to="/" className={styles.navBrand}>Arvyax</Link>
-            <div className={styles.navLinks}>
-                {token ? (
-                    <>
-                        <Link to="/my-sessions">My Sessions</Link>
-                        <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
-                    </>
-                ) : (
-                    <>
-                        <Link to="/login">Login</Link>
-                        <Link to="/register">Register</Link>
-                    </>
-                )}
+            <div className={styles.navContent}>
+                <Link to="/" className={styles.navBrand}>Arvyax</Link>
+                <div className={styles.navLinks}>
+                    {token ? (
+                        <>
+                            <Link to="/my-sessions" className={styles.actionLink}>My Sessions</Link>
+                            <button onClick={handleLogout} className={styles.logoutButton}>Logout</button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/login">Login</Link>
+                            <Link to="/register">Register</Link>
+                        </>
+                    )}
+                </div>
             </div>
         </header>
     );

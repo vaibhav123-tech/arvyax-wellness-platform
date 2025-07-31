@@ -1,38 +1,54 @@
 .dashboardContainer {
-    max-width: 1100px;
-    margin: 0 auto;
+    min-height: 100vh;
+    background-image: url('../assets/image2.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     padding: 2rem;
 }
 
+/* UPDATED */
 .heroSection {
     text-align: center;
-    padding: 3rem 1rem;
-    background-color: #f9fafb;
-    border-radius: 8px;
+    padding: 3rem 2rem;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* The "frosted glass" effect */
+    border-radius: 12px;
     margin-bottom: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* UPDATED */
 .heroTitle {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #111827;
-    margin-bottom: 0.5rem;
+    font-size: 2.8rem;
+    font-weight: 800; /* Bolder */
+    color: #1f2937; /* Darker for contrast */
+    margin-bottom: 0.75rem;
 }
 
+/* UPDATED */
 .heroSubtitle {
     font-size: 1.125rem;
-    color: #4b5563;
+    color: #374151; /* Slightly darker */
     max-width: 600px;
     margin: 0 auto;
+    line-height: 1.6;
 }
 
+/* UPDATED */
 .sessionsHeading {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #111827;
-    margin-bottom: 1.5rem;
-    border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 0.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 2rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .sessionsGrid {

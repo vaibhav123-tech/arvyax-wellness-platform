@@ -1,40 +1,56 @@
 .navbar {
     width: 100%;
-    max-width: 1000px; /* Same max-width as the login form */
-    margin: 0 auto; /* Centers the navbar */
-    padding: 1.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    backdrop-filter: blur(10px); /* Frosted glass effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 1rem 2rem;
+    position: sticky; /* Makes it stick to the top */
+    top: 0;
+    z-index: 50;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.navLinks a {
-    margin: 0 0.75rem;
+/* This is a wrapper to center the content */
+.navContent {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navBrand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #4f46e5; /* A nice purple-blue */
     text-decoration: none;
-    color: #4b5563;
+}
+
+.navLinks a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: #374151; /* Dark gray */
     font-weight: 500;
     transition: color 0.2s;
+    font-size: 1rem;
 }
 
 .navLinks a:hover {
     color: #4f46e5;
 }
 
-.navBrand {
-    font-weight: bold;
-    font-size: 1.25rem;
-    color: #111827;
-    text-decoration: none;
-}
-
 .logoutButton {
     background: none;
     border: none;
     cursor: pointer;
-    color: #4b5563;
+    color: #374151;
     font-weight: 500;
     font-size: 1rem;
-    margin-left: 0.75rem;
+    margin-left: 1rem;
+    transition: color 0.2s;
 }
 
 .logoutButton:hover {
