@@ -35,6 +35,18 @@ const getConfig = () => {
 const getSessionById = (sessionId) => {
     return axios.get(API_URL + `my-sessions/${sessionId}`, getConfig());
 };
+const deleteSession = async (sessionId) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        throw new Error('No token found');
+    }
+    const config = {
+        headers: {
+            'x-auth-token': token,
+        },
+    };
+    return axios.delete(API_URL + `my-sessions/${sessionId}`, config);
+}   
 
 const publishSession = async (sessionId) => {
    const token=localStorage.getItem('token');
@@ -57,6 +69,7 @@ const sessionService = {
   publishSession,
     getPublicSessions,
     getSessionById,
+    deleteSession,
 };
 
 export default sessionService;

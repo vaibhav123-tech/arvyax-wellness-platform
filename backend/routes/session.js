@@ -97,5 +97,25 @@ router.post('/publish', auth, async (req, res) => {
     }
 });
 
+router.delete('/my-sessions/:id', auth, async (req, res) => {
+    try {
+        const session = await Session.findById(req.params.id);
 
+        if (!session) {
+            return res.status(404).json({ msg: 'Session not found' });
+        }
+
+        // Make sure user owns the session
+        if (session.user.toString() !== req.user.id) {
+            return res.status(401).json({ msg: 'Not authorized' });
+        }
+
+        await session.deleteOne();
+
+        res.json({ msg: 'Session removed' });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
 module.exports = router;

@@ -46,7 +46,7 @@ const SessionEditorPage = () => {
             sessionId: sessionId || undefined,
         };
         try {
-            await sessionService.saveDraft(dataToSave);
+            await sessionService.createSession(dataToSave);
             setStatusMessage('Draft saved.');
         } catch (error) {
             setStatusMessage('Failed to save.');

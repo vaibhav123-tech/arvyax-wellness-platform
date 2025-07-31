@@ -109,3 +109,16 @@
     margin-bottom: 1rem;
     text-align: center;
 }
+@media (max-width: 768px) {
+    .loginWrapper, .registerWrapper {
+        flex-direction: column;
+    }
+
+    .imageContainer {
+        display: none; /* Hide the image on small screens to save space */
+    }
+
+    .formContainer {
+        padding: 2rem 1.5rem;
+    }
+}
