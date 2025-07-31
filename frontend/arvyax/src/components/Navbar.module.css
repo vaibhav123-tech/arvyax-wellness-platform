@@ -1,0 +1,42 @@
+.navbar {
+    width: 100%;
+    max-width: 1000px; /* Same max-width as the login form */
+    margin: 0 auto; /* Centers the navbar */
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navLinks a {
+    margin: 0 0.75rem;
+    text-decoration: none;
+    color: #4b5563;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.navLinks a:hover {
+    color: #4f46e5;
+}
+
+.navBrand {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #111827;
+    text-decoration: none;
+}
+
+.logoutButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #4b5563;
+    font-weight: 500;
+    font-size: 1rem;
+    margin-left: 0.75rem;
+}
+
+.logoutButton:hover {
+    color: #4f46e5;
+}

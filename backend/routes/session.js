@@ -24,9 +24,9 @@ router.get('/my-sessions', auth, async (req, res) => {
 });
 
 router.post('/save-draft', auth, async (req, res) => {
-  const { title, tags, json_file_url, sessionId } = req.body;
+  const { title, tags, json_file_url, sessionId,image_url } = req.body;
 
-  const sessionFields = { user: req.user.id, title, tags, json_file_url, status: 'draft' };
+  const sessionFields = { user: req.user.id, title, tags, json_file_url, status: 'draft',image_url };
 
   try {
     let session;

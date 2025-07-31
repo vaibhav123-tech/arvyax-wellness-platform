@@ -24,6 +24,9 @@ const SessionSchema = new mongoose.Schema({
     enum: ['draft', 'published'],
     default: 'draft',
   },
+  image_url: { 
+    type: String, 
+    default: '',}
 }, { 
   timestamps: true 
 });

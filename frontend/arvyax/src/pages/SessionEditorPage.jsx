@@ -12,11 +12,12 @@ const SessionEditorPage = () => {
     title: '',
         tags: '',
         json_file_url: '',
+        image_url: '',
   });
   const [statusMessage, setStatusMessage] = useState('');
   const navigate = useNavigate();
   const ismounted = useRef(false);
-  const { title, tags, json_file_url } = sessionData;
+  const { title, tags, json_file_url ,image_url} = sessionData;
   const { sessionId } = useParams(); // Get sessionId from URL params if editing an existing session
   const autoSave = useCallback(async () => {
     setStatusMessage('Saving...');
@@ -24,6 +25,7 @@ const SessionEditorPage = () => {
         ...sessionData,
         tags: sessionData.tags.split(',').map(tag => tag.trim()),
         sessionId: sessionId || undefined,
+        image_url: sessionData.image_url,
     };
     try {
         // Change this line to use your function name
@@ -76,6 +78,7 @@ const SessionEditorPage = () => {
       tags: tags.split(',').map(tag => tag.trim()), // Convert comma-separated tags to an array
       json_file_url,
       sessionId: sessionId || undefined,
+      image_url
     };  
     try {
       await sessionService.createSession(sessionData);
@@ -116,6 +119,15 @@ const SessionEditorPage = () => {
                         value={json_file_url}
                         onChange={onChange}
                     />
+        </div>
+        <div>
+          <label>Image URL</label>
+          <input
+            type="text"
+            name="image_url"
+            value={image_url}
+            onChange={onChange}
+          />
         </div>
         <button type="submit">Save Draft</button>
 
