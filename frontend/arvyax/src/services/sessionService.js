@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+ 
 import axios from 'axios';
 const API_URL = 'http://localhost:5000/api/sessions/';
 const getMySessions = async () => {
@@ -37,10 +37,14 @@ const publishSession = async (sessionId) => {
     };
     return axios.post(API_URL + 'publish', { sessionId }, config);
 }
+const getPublicSessions = async () => {
+    return axios.get(API_URL);
+}
 const sessionService = {
   getMySessions,
   createSession,
   publishSession,
+    getPublicSessions,
 };
 
 export default sessionService;
