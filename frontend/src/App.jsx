@@ -6,6 +6,7 @@ import DashboardPage from './pages/DashboardPage';
 import MySessionsPage from './pages/MySessionsPage';
 import SessionEditorPage from './pages/SessionEditorPage';
 import Navbar from './components/Navbar';
+import SessionDetailPage from './pages/SessionDetailPage';
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
       <Route path="/editor" element={<SessionEditorPage />} />
       {/* We will add a route for editing a specific session later */}
       <Route path="/editor/:sessionId" element={<SessionEditorPage />} />
+      <Route path="/session/:sessionId" element={<SessionDetailPage/>} />
+      {/* Add more routes as needed */}
     </Routes>
     </div>
   );

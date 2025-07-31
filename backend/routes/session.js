@@ -12,6 +12,19 @@ router.get('/', async (req, res) => {
     res.status(500).send('Server Error');
   }
 });
+router.get('/:id', async (req, res) => {
+  try {
+    const session = await Session.findById(req.params.id);
+    if (!session) {
+      return res.status(404).json({ msg: 'Session not found' });
+    }
+    res.json(session);
+  }
+  catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 router.get('/my-sessions', auth, async (req, res) => {
   try {

@@ -3,7 +3,7 @@ import sessionService from '../services/sessionService';
 import styles from './DashboardPage.module.css';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-
+import { Link } from 'react-router-dom';
 const DashboardPage = () => {
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -60,11 +60,13 @@ const DashboardPage = () => {
       {sessions.length > 0 ? (
         <div className={styles.sessionsGrid}>
           {sessions.map((session) => (
+            <Link to={`/session/${session._id}`} key={session.id} className={styles.cardLink}>
             <div key={session._id} className={styles.sessionCard}>
               {session.image_url && <img src={session.image_url} alt={session.title} className={styles.cardImage} />}
               <h3 className={styles.cardTitle}>{session.title}</h3>
               <p className={styles.cardTags}>Tags: {session.tags.join(', ')}</p>
             </div>
+            </Link>          
           ))}
         </div>
       ) : (

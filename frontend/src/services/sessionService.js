@@ -35,6 +35,9 @@ const getConfig = () => {
 const getSessionById = (sessionId) => {
     return axios.get(API_URL + `my-sessions/${sessionId}`, getConfig());
 };
+const getSessionByIdPublic = (sessionId) => {
+    return axios.get(API_URL + `${sessionId}`);
+};
 const deleteSession = async (sessionId) => {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -70,6 +73,7 @@ const sessionService = {
     getPublicSessions,
     getSessionById,
     deleteSession,
+    getSessionByIdPublic,
 };
 
 export default sessionService;
