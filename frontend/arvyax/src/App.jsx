@@ -19,6 +19,7 @@ function App() {
       <Route path="/my-sessions" element={<MySessionsPage />} />
       <Route path="/editor" element={<SessionEditorPage />} />
       {/* We will add a route for editing a specific session later */}
+      <Route path="/editor/:sessionId" element={<SessionEditorPage />} />
     </Routes>
     </div>
   );

@@ -25,6 +25,17 @@ const createSession = async (sessionData) => {
     };
     return axios.post(API_URL + 'save-draft', sessionData, config);
 }
+const getConfig = () => {
+    const token = localStorage.getItem('token');
+    return {
+        headers: { 'x-auth-token': token },
+    };
+};
+
+const getSessionById = (sessionId) => {
+    return axios.get(API_URL + `my-sessions/${sessionId}`, getConfig());
+};
+
 const publishSession = async (sessionId) => {
    const token=localStorage.getItem('token');
    if (!token) {
@@ -45,6 +56,7 @@ const sessionService = {
   createSession,
   publishSession,
     getPublicSessions,
+    getSessionById,
 };
 
 export default sessionService;

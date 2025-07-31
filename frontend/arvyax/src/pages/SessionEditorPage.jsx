@@ -4,15 +4,65 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import sessionService from "../services/sessionService";
 import { useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
+import { useRef } from "react";
+import { useCallback } from "react";
 const SessionEditorPage = () => {
-  const navigate = useNavigate();
   const [sessionData, setSessionData] = useState({
     title: '',
         tags: '',
         json_file_url: '',
   });
+  const [statusMessage, setStatusMessage] = useState('');
+  const navigate = useNavigate();
+  const ismounted = useRef(false);
   const { title, tags, json_file_url } = sessionData;
+  const { sessionId } = useParams(); // Get sessionId from URL params if editing an existing session
+  const autoSave = useCallback(async () => {
+    setStatusMessage('Saving...');
+    const dataToSave = {
+        ...sessionData,
+        tags: sessionData.tags.split(',').map(tag => tag.trim()),
+        sessionId: sessionId || undefined,
+    };
+    try {
+        // Change this line to use your function name
+        await sessionService.createSession(dataToSave); 
+        setStatusMessage('Draft saved.');
+    } catch (error) {
+        setStatusMessage('Failed to save.');
+        console.error("Error saving draft:", error);
+    }
+}, [sessionData, sessionId]);
+ useEffect(() => {
+        if (ismounted.current) {
+            const timer = setTimeout(() => {
+                if (sessionData.title) {
+                    autoSave();
+                }
+            }, 10000); // 5-second delay
+
+            return () => clearTimeout(timer);
+        } else {
+            ismounted.current = true;
+        }
+    }, [sessionData, autoSave]);
+  useEffect(()=>{
+    if(sessionId) {
+      const fetchSession = async () => {
+        try {
+          const response = await sessionService.getSessionById(sessionId);
+          setSessionData({
+            title: response.data.title,
+            tags: response.data.tags.join(', '), // Convert array to comma-separated string
+            json_file_url: response.data.json_file_url,
+          });} catch (error) {
+          console.error("Error fetching session data:", error); }
+          }
+          fetchSession();
+        }
+  },[sessionId,navigate]);
+  
   const onChange = (e) => {
     setSessionData((prev)=> ({
       ...prev,
@@ -25,6 +75,7 @@ const SessionEditorPage = () => {
       title,
       tags: tags.split(',').map(tag => tag.trim()), // Convert comma-separated tags to an array
       json_file_url,
+      sessionId: sessionId || undefined,
     };  
     try {
       await sessionService.createSession(sessionData);
@@ -70,6 +121,7 @@ const SessionEditorPage = () => {
 
       </form>
       {/* Add your session editor form or components here */}
+      {statusMessage && <p><i>{statusMessage}</i></p>}
       <button onClick={() => navigate('/my-sessions')}>Back to My Sessions</button>
     </div>
   );
